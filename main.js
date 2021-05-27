@@ -5,6 +5,32 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
 
+//hide the error msg on top
+// let modal = document.querySelector('#modal').hidden = true;
+let modal = document.querySelector('#modal');
+modal.className = 'hidden';
+
+const init = () => {
+  fetch('http://mimicServer.example.com')
+    // .then(data => data.forEach(renderAnimal))
+  .then(data => {
+    const likeBtns = document.querySelectorAll('.like');
+    for (likeBtn in likeBtns) {
+      likeBtn.addEventListener('click',(e) => {
+        e.target.className = 'activated-heart';
+      })
+    }
+    })
+    // .catch(error => console.error('Error:', error))
+  .catch(error => {
+      modal.className = '';
+      setTimeout(timeOutCB, 3000)
+  })
+}
+
+const timeOutCB = () => {
+  modal.className = 'hidden';
+}
 
 
 //------------------------------------------------------------------------------
